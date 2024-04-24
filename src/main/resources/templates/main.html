@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org", lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>MainSite</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Имя пользователя</th>
+        <th>Фамилия</th>
+        <th>Возраст</th>
+        <th>Город</th>
+        <th>Интересы</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.username}"></td>
+        <!-- Добавьте здесь другие поля, если они есть в вашем классе User -->
+    </tr>
+</table>
+</body>
+</html>
