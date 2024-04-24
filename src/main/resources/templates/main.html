@@ -3,6 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>MainSite</title>
+   <style>
+       table {
+           width: 100%;
+           border-collapse: collapse;
+       }
+       th, td {
+           border: 1px solid black;
+           padding: 15px;
+           text-align: left;
+       }
+
+       body{
+           background-color: lightblue;
+       }
+   </style>
 </head>
 <body>
 <table>
@@ -15,11 +30,27 @@
         <th>Интересы</th>
     </tr>
     <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
         <td th:text="${user.username}"></td>
         <td th:text="${user.username}"></td>
-        <td th:text="${user.username}"></td>
-        <!-- Добавьте здесь другие поля, если они есть в вашем классе User -->
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.city}"></td>
+        <td th:text="${user.interesting}"></td>
     </tr>
 </table>
+<br>
+<br>
+<form method="GET" action="/id">
+    <label for="userId">Введите ID пользователя:</label>
+    <input type="text" id="userId" name="id">
+    <button type="submit">Получить информацию</button>
+</form>
+<br>
+<hr>
+<br>
+<form action="/delete/id" method="get">
+    <input type="text" name="id" placeholder="Enter user ID to delete"/>
+    <button type="submit">Delete User</button>
+</form>
 </body>
 </html>
