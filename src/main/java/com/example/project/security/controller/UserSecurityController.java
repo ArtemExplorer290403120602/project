@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @Slf4j
@@ -34,5 +35,4 @@ public class UserSecurityController {
         userSecurityService.registration(registrationDto);
         return "redirect:/login"; // Redirect to login page after successful registration
     }
-
 }

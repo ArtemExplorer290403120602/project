@@ -50,7 +50,7 @@ public class UserSecurityService {
         userSecurity.setEmail(registrationDto.getEmail());
         userSecurity.setRole(Roles.USER);
         userSecurity.setUser_id(savedUser.getId());
-        userSecurity.setIs_Blocked(false);
+        //userSecurity.setIs_Blocked(false);
         userSecurityRepository.save(userSecurity);
     }
 }

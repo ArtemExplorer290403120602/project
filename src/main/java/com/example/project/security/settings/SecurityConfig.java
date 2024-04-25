@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -29,7 +30,12 @@ public class SecurityConfig {
                         auth.requestMatchers(new AntPathRequestMatcher("/", "GET")).hasAnyRole("ADMIN","MODERATION")
                                 .requestMatchers(new AntPathRequestMatcher("/id","GET")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/delete/id","GET")).hasRole("MODERATION")
+                                .requestMatchers(new AntPathRequestMatcher("/login-user", "GET")).permitAll()
                                 .anyRequest().authenticated())
+                                .formLogin(form-> form
+                                        .loginPage("/login-user")
+                                        .defaultSuccessUrl("/",true))
+                                        //.failureUrl("/login-user.html?error=true")) //целевая страница после неудачного входа в систему
                 .userDetailsService(customUserDetailService)
                 .httpBasic(Customizer.withDefaults())
                 .build();
