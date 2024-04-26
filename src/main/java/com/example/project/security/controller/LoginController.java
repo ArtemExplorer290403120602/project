@@ -9,4 +9,10 @@ public class LoginController {
     public String showLoginForm() {
         return "login";
     }
+    @GetMapping("/login")
+    public String loginPage() {
+        return "redirect:/registration"; // Перенаправление на страницу регистрации
+    }
 }
+
+

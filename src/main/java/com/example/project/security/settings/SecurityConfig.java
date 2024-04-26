@@ -1,6 +1,6 @@
 package com.example.project.security.settings;
 
-import com.example.project.security.service.CustomUserDetailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -17,11 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {
-    private final CustomUserDetailService customUserDetailService;
 
-    public SecurityConfig(CustomUserDetailService customUserDetailService) {
-        this.customUserDetailService = customUserDetailService;
-    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
@@ -31,14 +27,12 @@ public class SecurityConfig {
                                 .requestMatchers(new AntPathRequestMatcher("/id","GET")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/delete/id","GET")).hasRole("MODERATION")
                                 .requestMatchers(new AntPathRequestMatcher("/login-user", "GET")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/registration","GET")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/registration","POST")).permitAll()
                                 .anyRequest().authenticated())
                                 .formLogin(form-> form
-                                        .loginPage("/login-user")
+                                        .loginPage("/login-user").permitAll()
                                         .defaultSuccessUrl("/",true))
                                         //.failureUrl("/login-user.html?error=true")) //целевая страница после неудачного входа в систему
-                .userDetailsService(customUserDetailService)
+                //.userDetailsService()
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
