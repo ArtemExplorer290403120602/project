@@ -27,10 +27,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
         return httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers(new AntPathRequestMatcher("/", "GET")).hasAnyRole("ADMIN","MODERATION")
+                        auth.requestMatchers(new AntPathRequestMatcher("/", "GET")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/id","GET")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/delete/id","GET")).hasRole("MODERATION")
                                 .requestMatchers(new AntPathRequestMatcher("/login-user", "GET")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/registration","GET")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/registration","POST")).permitAll()
                                 .anyRequest().authenticated())
                                 .formLogin(form-> form
                                         .loginPage("/login-user")

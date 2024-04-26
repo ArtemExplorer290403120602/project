@@ -25,14 +25,13 @@ public class UserSecurityController {
     }
 
     @GetMapping("/registration")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("registrationDto", new RegistrationDto());
+    public String showRegistrationForm(RegistrationDto registrationDto) {
         return "registration";
     }
 
     @PostMapping("/registration")
     public String processRegistrationForm(@ModelAttribute("registrationDto") @Valid RegistrationDto registrationDto) {
         userSecurityService.registration(registrationDto);
-        return "redirect:/login"; // Redirect to login page after successful registration
+        return "redirect:/login-user"; // Redirect to login page after successful registration
     }
 }
