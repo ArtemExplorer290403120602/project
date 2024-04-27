@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<h1>Register</h1>
+
+<form action="/register" method="post" th:object="${userDto}">
+  <label for="login">Login:</label>
+  <input type="text" id="login" name="login" th:field="*{login}" required>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" th:field="*{password}" required>
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" th:field="*{username}" required>
+
+    <label for="surname">Surname:</label>
+    <input type="text" id="surname" name="surname" th:field="*{surname}" required>
+
+    <label for="age">Age:</label>
+    <input type="text" id="age" name="age" th:field="*{age}" required>
+
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" th:field="*{city}" required>
+
+    <label for="interesting">Interesting:</label>
+    <input type="text" id="interesting" name="interesting" th:field="*{interesting}" required>
+
+
+    <label for="email">Email:</label>
+  <input type="email" id="email" name="email" th:field="*{email}" required>
+
+  <button type="submit">Register</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,53 @@
+package com.example.project.security.service;
+
+import com.example.project.exception.SameUserInDatabase;
+import com.example.project.model.User;
+import com.example.project.repository.UserRepository;
+import com.example.project.security.model.Roles;
+import com.example.project.security.model.UserSecurity;
+import com.example.project.security.model.dto.UserDto;
+import com.example.project.security.repository.UserSecurityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
+@Service
+public class UserSecurityService {
+    private final PasswordEncoder passwordEncoder;
+    private final UserSecurityRepository userSecurityRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    public UserSecurityService(PasswordEncoder passwordEncoder, UserSecurityRepository userSecurityRepository, UserRepository userRepository) {
+        this.passwordEncoder = passwordEncoder;
+        this.userSecurityRepository = userSecurityRepository;
+        this.userRepository = userRepository;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void registeredUser(UserDto userDto){
+        Optional<UserSecurity> security = userSecurityRepository.findByLogin(userDto.getLogin());
+        if (security.isPresent()) {
+            throw new SameUserInDatabase(userDto.getLogin());
+        }
+
+        User user = new User();
+        user.setUsername(userDto.getUsername());
+        user.setSurname(userDto.getSurname());
+        user.setAge(userDto.getAge());
+        user.setCity(userDto.getCity());
+        user.setInteresting(userDto.getInteresting());
+        User savedUser = userRepository.save(user);
+
+        UserSecurity userSecurity = new UserSecurity();
+        userSecurity.setLogin(userDto.getLogin());
+        userSecurity.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        userSecurity.setEmail(userDto.getEmail());
+        userSecurity.setRole(Roles.USER);
+        userSecurity.setUser_id(savedUser.getId());
+        userSecurityRepository.save(userSecurity);
+    }
+}
