@@ -8,5 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface UserSecurityRepository extends JpaRepository<UserSecurity,Long> {
-    Optional<UserSecurity> findByLogin(String userLogin);
+    Optional<UserSecurity> findByLogin(String login);
+
 }

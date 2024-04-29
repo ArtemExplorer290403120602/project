@@ -5,9 +5,8 @@ import com.example.project.model.User;
 import com.example.project.repository.UserRepository;
 import com.example.project.security.model.Roles;
 import com.example.project.security.model.UserSecurity;
-import com.example.project.security.model.dto.RegistrationDto;
+import com.example.project.security.model.dto.UserDto;
 import com.example.project.security.repository.UserSecurityRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,12 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-@Slf4j
 @Service
 public class UserSecurityService {
     private final PasswordEncoder passwordEncoder;
     private final UserSecurityRepository userSecurityRepository;
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     public UserSecurityService(PasswordEncoder passwordEncoder, UserSecurityRepository userSecurityRepository, UserRepository userRepository) {
@@ -30,27 +28,26 @@ public class UserSecurityService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void registration(RegistrationDto registrationDto) {
-        Optional<UserSecurity> security = userSecurityRepository.findByLogin(registrationDto.getLogin());
+    public void registeredUser(UserDto userDto){
+        Optional<UserSecurity> security = userSecurityRepository.findByLogin(userDto.getLogin());
         if (security.isPresent()) {
-            throw new SameUserInDatabase(registrationDto.getLogin());
+            throw new SameUserInDatabase(userDto.getLogin());
         }
 
         User user = new User();
-        user.setUsername(registrationDto.getUsername());
-        user.setSurname(registrationDto.getSurname());
-        user.setAge(registrationDto.getAge());
-        user.setCity(registrationDto.getCity());
-        user.setInteresting(registrationDto.getInteresting());
+        user.setUsername(userDto.getUsername());
+        user.setSurname(userDto.getSurname());
+        user.setAge(userDto.getAge());
+        user.setCity(userDto.getCity());
+        user.setInteresting(userDto.getInteresting());
         User savedUser = userRepository.save(user);
 
         UserSecurity userSecurity = new UserSecurity();
-        userSecurity.setLogin(registrationDto.getLogin());
-        userSecurity.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
-        userSecurity.setEmail(registrationDto.getEmail());
+        userSecurity.setLogin(userDto.getLogin());
+        userSecurity.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        userSecurity.setEmail(userDto.getEmail());
         userSecurity.setRole(Roles.USER);
         userSecurity.setUser_id(savedUser.getId());
-        userSecurity.setIs_Blocked(false);
         userSecurityRepository.save(userSecurity);
     }
 }

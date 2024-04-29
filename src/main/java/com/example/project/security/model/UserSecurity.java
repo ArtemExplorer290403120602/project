@@ -32,8 +32,8 @@ public class UserSecurity {
     @Column(name = "role")
     private Roles role;
 
-    @Column(name = "is_Blocked")
-    private Boolean is_Blocked;
+    //@Column(name = "is_Blocked")
+    //private Boolean is_Blocked;
 
     @Column(name = "user_id")
     private Long user_id;
