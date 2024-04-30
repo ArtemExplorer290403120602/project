@@ -35,6 +35,8 @@ public class SecurityConfig {
                                 .requestMatchers(new AntPathRequestMatcher("/delete/id", "GET")).hasRole("MODERATION")
                                 .requestMatchers(new AntPathRequestMatcher("/login-user", "GET")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/register","POST")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/css/**")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/images/**")).permitAll()
                                 .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login-user").permitAll()
