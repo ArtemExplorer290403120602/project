@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@PasswordMatches
+//@PasswordMatches
 public class UserDto {
     @NotNull
     @NotEmpty
@@ -23,7 +23,7 @@ public class UserDto {
 
     @NotNull
     @NotEmpty
-    @ValidEmail
+    //@ValidEmail
     private String email;
 
 
