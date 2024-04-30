@@ -3,31 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>MainPage</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="mainPage.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html">Войти</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="register.html">Зарегистрироваться</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Об разработчике</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <h2 class="Mex">Mex</h2>
+    <nav class="navigation">
+        <a href="login.html">Login</a>
+        <a href="register.html">Registration</a>
+        <a href="#">About Developer</a>
     </nav>
 </header>
 </body>
