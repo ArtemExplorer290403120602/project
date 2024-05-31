@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-@EnableMethodSecurity
+@EnableWebSecurity
 public class SecurityConfig {
     private UserDetailSecurityService userDetailSecurityService;
 
@@ -30,13 +30,16 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers(new AntPathRequestMatcher("/", "GET")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/id", "GET")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/delete/id", "GET")).hasRole("MODERATION")
-                                .requestMatchers(new AntPathRequestMatcher("/login-user", "GET")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/register","POST")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/css/**")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/images/**")).permitAll()
+                        auth.requestMatchers(
+                                        new AntPathRequestMatcher("/", "GET"),
+                                        new AntPathRequestMatcher("/developer", "GET"),
+                                        new AntPathRequestMatcher("/id", "GET"),
+                                        new AntPathRequestMatcher("/delete/id", "GET"),
+                                        new AntPathRequestMatcher("/register", "POST"),
+                                        new AntPathRequestMatcher("/register","GET"),
+                                        new AntPathRequestMatcher("/css/**"),
+                                        new AntPathRequestMatcher("/images/**")
+                                ).permitAll()
                                 .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login-user").permitAll()
