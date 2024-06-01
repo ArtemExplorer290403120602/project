@@ -50,4 +50,23 @@ public class UserSecurityService {
         userSecurity.setUser_id(savedUser.getId());
         userSecurityRepository.save(userSecurity);
     }
+
+    public UserDto getUserByLogin(String login) {
+        UserSecurity userSecurity = userSecurityRepository.findByLogin(login)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        User user = userRepository.findById(userSecurity.getUser_id())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        UserDto userDto = new UserDto();
+        userDto.setUsername(user.getUsername());
+        userDto.setSurname(user.getSurname());
+        userDto.setAge(user.getAge());
+        userDto.setCity(user.getCity());
+        userDto.setInteresting(user.getInteresting());
+        userDto.setLogin(userSecurity.getLogin());
+        userDto.setEmail(userSecurity.getEmail());
+
+        return userDto;
+    }
 }
