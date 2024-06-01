@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}">
 </head>
 <body>
+<header>
+    <nav class="navigation">
+        <a th:href="@{/}">Back in main page</a>
+    </nav>
+</header>
 
+<div class="info-box">
+    <h2 th:text="${userDto.username} + ' ' + ${userDto.surname}"></h2>
+    <div class="input-box">
+        <p>Age: <span th:text="${userDto.age}"></span></p>
+    </div>
+    <div class="input-box">
+        <p>City: <span th:text="${userDto.city}"></span></p>
+    </div>
+    <div class="input-box">
+        <p>Interesting: <span th:text="${userDto.interesting}"></span></p>
+    </div>
+    <div class="input-box">
+        <p>Email: <span th:text="${userDto.email}"></span></p>
+    </div>
+</div>
 </body>
 </html>

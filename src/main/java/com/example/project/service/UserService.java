@@ -2,6 +2,8 @@ package com.example.project.service;
 
 import com.example.project.model.User;
 import com.example.project.repository.UserRepository;
+import com.example.project.security.model.UserSecurity;
+import com.example.project.security.repository.UserSecurityRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +15,12 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private UserSecurityRepository userSecurityRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository,UserSecurityRepository userSecurityRepository) {
         this.userRepository = userRepository;
+        this.userSecurityRepository = userSecurityRepository;
     }
 
     public List<User> getAllUsers() {

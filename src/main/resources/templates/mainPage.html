@@ -13,6 +13,7 @@
         <a th:href="@{/register}" th:if="${!showProfileLink}">Registration</a>
         <a th:href="@{/developer}" th:if="${!showProfileLink}">About Developer</a>
         <a th:href="@{/profile}" th:if="${showProfileLink}">My profile</a>
+        <span th:if="${showProfileLink}" class="logged-in">Logged in as: <span th:text="${username}"></span></span>
         <a th:if="${showProfileLink}" th:href="@{/logout}">Logout</a>
     </nav>
 </header>
