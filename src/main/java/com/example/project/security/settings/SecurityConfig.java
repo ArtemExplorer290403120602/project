@@ -36,14 +36,18 @@ public class SecurityConfig {
                                         new AntPathRequestMatcher("/id", "GET"),
                                         new AntPathRequestMatcher("/delete/id", "GET"),
                                         new AntPathRequestMatcher("/register", "POST"),
-                                        new AntPathRequestMatcher("/register","GET"),
+                                        new AntPathRequestMatcher("/register", "GET"),
                                         new AntPathRequestMatcher("/css/**"),
-                                        new AntPathRequestMatcher("/images/**")
+                                        new AntPathRequestMatcher("/images/**"),
+                                        new AntPathRequestMatcher("/profile")
                                 ).permitAll()
                                 .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login-user").permitAll()
                         .defaultSuccessUrl("/", true))
+                .logout(logout -> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/").permitAll())
                 //.failureUrl("/login-user.html?error=true")) //целевая страница после неудачного входа в систему
                 .userDetailsService(userDetailSecurityService)
                 .httpBasic(Customizer.withDefaults())
