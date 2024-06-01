@@ -23,6 +23,7 @@ public class MainController {
         } else {
             // Пользователь авторизован, возвращаем модель с ссылкой на profile
             model.addAttribute("showProfileLink", true);
+            model.addAttribute("username", principal.getName()); // Добавляем имя пользователя в модель
         }
         return "mainPage";
     }
