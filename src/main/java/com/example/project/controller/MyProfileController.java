@@ -26,4 +26,6 @@ public class MyProfileController {
         model.addAttribute("userDto", userDto);
         return "profile";
     }
+
+
 }

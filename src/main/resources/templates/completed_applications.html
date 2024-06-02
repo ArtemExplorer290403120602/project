@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Completed applications</title>
+</head>
+<body>
+<h1>Completed Requests</h1>
+<ul>
+    <li th:each="request : ${completedRequests}">
+        <span th:text="${request.model_name}"></span>
+        <a th:href="@{/completed-requests/{id}(id=${request.id})}">Details</a>
+    </li>
+</ul>
+</body>
+</html>

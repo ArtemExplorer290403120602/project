@@ -43,7 +43,9 @@ public class SecurityConfig {
                                 ).permitAll()
                                 .requestMatchers(
                                         new AntPathRequestMatcher("/requests/create","GET"),
-                                        new AntPathRequestMatcher("/create","POST")
+                                        new AntPathRequestMatcher("/create","POST"),
+                                        new AntPathRequestMatcher("/completed-requests","GET"),
+                                        new AntPathRequestMatcher("/completed-requests/{id}","GET")
                                 ).hasRole("USER")
                                 .anyRequest().authenticated())
                 .formLogin(form -> form

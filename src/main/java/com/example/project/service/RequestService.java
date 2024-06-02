@@ -11,6 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,6 +40,30 @@ public class RequestService {
             log.info("Request created: " + request);
         } else {
             log.error("User not found or invalid for login: " + login);
+        }
+    }
+
+    public List<Request> getCompletedRequestsByUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String login = authentication.getName();
+        Optional<UserSecurity> user = userSecurityRepository.findByLogin(login);
+
+        if (user != null && user.isPresent()) {
+            Long userSecurityId = user.get().getId();
+            return requestRepository.findByUser_security_id(userSecurityId);
+        } else {
+            log.error("User not found or invalid for login: " + login);
+            return Collections.emptyList(); // если пользователь не найден, возвращаем пустой список
+        }
+    }
+
+    public Request getRequestById(Long id) {
+        Optional<Request> requestOpt = requestRepository.findById(id);
+        if (requestOpt.isPresent()) {
+            return requestOpt.get();
+        } else {
+            // Можно выбрасывать исключение или вернуть пустой объект Request
+            return new Request();
         }
     }
 }
