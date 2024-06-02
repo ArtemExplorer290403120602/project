@@ -41,6 +41,10 @@ public class SecurityConfig {
                                         new AntPathRequestMatcher("/images/**"),
                                         new AntPathRequestMatcher("/profile")
                                 ).permitAll()
+                                .requestMatchers(
+                                        new AntPathRequestMatcher("/requests/create","GET"),
+                                        new AntPathRequestMatcher("/create","POST")
+                                ).hasRole("USER")
                                 .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login-user").permitAll()

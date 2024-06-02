@@ -15,12 +15,10 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private UserSecurityRepository userSecurityRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository,UserSecurityRepository userSecurityRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.userSecurityRepository = userSecurityRepository;
     }
 
     public List<User> getAllUsers() {
