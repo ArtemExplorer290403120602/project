@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,8 +30,6 @@ public class Request {
     private Long id;
     @Column(name = "model_name")
     private String model_name;
-    @Column(name = "photo")
-    private byte[] photo;
     @Column(name = "data")
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp data;

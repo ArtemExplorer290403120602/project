@@ -14,9 +14,11 @@
             <label for="modelName">Model Name:</label><br>
         </div>
         <div class="input-box">
-            <input type="file" id="photo" name="photo" th:field="*{photo}" required><br><br>
+            <input type="file" id="photo" accept="image/*" onchange="previewPhoto(event)">
             <label for="photo">Photo:</label><br>
+            <img id="preview" style="display:none;">
         </div>
+        <script th:src="@{/js/load_photo.js}"></script>
         <div class="input-box">
             <input type="text" id="text" name="text" th:field="*{text}" required><br><br>
             <label for="text">Text:</label><br>

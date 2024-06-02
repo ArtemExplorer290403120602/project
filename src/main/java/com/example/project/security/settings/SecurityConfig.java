@@ -39,13 +39,14 @@ public class SecurityConfig {
                                         new AntPathRequestMatcher("/register", "GET"),
                                         new AntPathRequestMatcher("/css/**"),
                                         new AntPathRequestMatcher("/images/**"),
-                                        new AntPathRequestMatcher("/profile")
+                                        new AntPathRequestMatcher("/profile"),
+                                        new AntPathRequestMatcher("/js/**")
                                 ).permitAll()
                                 .requestMatchers(
-                                        new AntPathRequestMatcher("/requests/create","GET"),
-                                        new AntPathRequestMatcher("/create","POST"),
-                                        new AntPathRequestMatcher("/completed-requests","GET"),
-                                        new AntPathRequestMatcher("/completed-requests/{id}","GET")
+                                        new AntPathRequestMatcher("/requests/create", "GET"),
+                                        new AntPathRequestMatcher("/create", "POST"),
+                                        new AntPathRequestMatcher("/completed-requests", "GET"),
+                                        new AntPathRequestMatcher("/completed-requests/{id}", "GET")
                                 ).hasRole("USER")
                                 .anyRequest().authenticated())
                 .formLogin(form -> form
