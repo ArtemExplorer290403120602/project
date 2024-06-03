@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user_response.css}">
 </head>
 <body>
 <header>
     <nav class="navigation">
-    <a th:href="@{/}">Back in main page</a>
+    <a th:href="@{/}">Вернуться на главную страницу</a>
     </nav>
 </header>
-<h2>All Responses</h2>
-<div class="responses">
-    <table>
-        <tr>
-            <th>Request ID</th>
-            <th>User Name</th>
-            <th>Response Text</th>
-            <th>Response Date</th>
-        </tr>
-        <tr th:each="response : ${responses}">
-            <td th:text="${response.request_id}"></td>
-            <td th:text="${response.login}"></td>
-            <td th:text="${response.response_text}"></td>
-            <td th:text="${response.response_date}"></td>
-        </tr>
-    </table>
+<div class="info-box">
+    <h2>Все ответы от администраторов</h2>
+    <div class="responses">
+        <table>
+            <tr>
+                <th>Имя заявки</th>
+                <th>Ответ от администратора</th>
+                <th>Дата ответа</th>
+                <th>Имя заявки</th>
+            </tr>
+            <tr th:each="response : ${responses}">
+                <td th:text="${response.login}"></td>
+                <td th:text="${response.response_text}"></td>
+                <td th:text="${response.response_date}"></td>
+                <td th:text="${response.model_name}"></td>
+            </tr>
+        </table>
+    </div>
 </div>
 </body>
 </html>

@@ -9,12 +9,12 @@
 <header>
     <h2 class="Mex">Mex</h2>
     <nav class="navigation">
-        <a th:href="@{/login}" th:if="${!showProfileLink}">Login</a>
-        <a th:href="@{/register}" th:if="${!showProfileLink}">Registration</a>
-        <a th:href="@{/developer}" th:if="${!showProfileLink}">About Developer</a>
-        <a th:href="@{/profile}" th:if="${showProfileLink}">My profile</a>
-        <span th:if="${showProfileLink}" class="logged-in">Logged in as: <span th:text="${username}"></span></span>
-        <a th:if="${showProfileLink}" th:href="@{/logout}">Logout</a>
+        <a th:href="@{/login}" th:if="${!showProfileLink}">Логин</a>
+        <a th:href="@{/register}" th:if="${!showProfileLink}">Регистрация</a>
+        <a th:href="@{/developer}" th:if="${!showProfileLink}">Об разработчике</a>
+        <a th:href="@{/profile}" th:if="${showProfileLink}">Мой профиль</a>
+        <span th:if="${showProfileLink}" class="logged-in">Вошел пользователь: <span th:text="${username}"></span></span>
+        <a th:if="${showProfileLink}" th:href="@{/logout}">Выйти</a>
         <a th:if="${showProfileLink }" th:href="@{/responses/all}">Ответы от Админов</a>
     </nav>
 </header>

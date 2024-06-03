@@ -8,25 +8,25 @@
 <body>
 <header>
     <nav class="navigation">
-        <a th:href="@{/}">Back in main page</a>
-        <a th:href="@{/requests/create}">Create Request</a>
-        <a th:href="@{/completed-requests}">Completed applications</a>
+        <a th:href="@{/}">Выйти на главную страницу</a>
+        <a th:href="@{/requests/create}">Создать заявку</a>
+        <a th:href="@{/completed-requests}">Посмотреть свои оформленные заявки</a>
     </nav>
 </header>
 
 <div class="info-box">
     <h2 th:text="${userDto.username} + ' ' + ${userDto.surname}"></h2>
     <div class="input-box">
-        <p>Age: <span th:text="${userDto.age}"></span></p>
+        <p>Возраст: <span th:text="${userDto.age}"></span></p>
     </div>
     <div class="input-box">
-        <p>City: <span th:text="${userDto.city}"></span></p>
+        <p>Город: <span th:text="${userDto.city}"></span></p>
     </div>
     <div class="input-box">
-        <p>Interesting: <span th:text="${userDto.interesting}"></span></p>
+        <p>Интересы: <span th:text="${userDto.interesting}"></span></p>
     </div>
     <div class="input-box">
-        <p>Email: <span th:text="${userDto.email}"></span></p>
+        <p>Почта: <span th:text="${userDto.email}"></span></p>
     </div>
 </div>
 </body>

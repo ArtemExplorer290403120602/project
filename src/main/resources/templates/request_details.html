@@ -12,11 +12,11 @@
     </nav>
 </header>
 <div class="info-box">
-    <h2>Request Details</h2>
-    <p>Model Name: <span th:text="${request.model_name}"></span></p>
-    <p>Photo: </p>
+    <h2>Подробнее о заявке</h2>
+    <p>Имя заявки: <span th:text="${request.model_name}"></span></p>
+    <p>Фотография: </p>
     <img src="" id="photoPreview">
-    <p>Text is problem: <span th:text="${request.text}"></span></p>
+    <p>Текст с проблемой: <span th:text="${request.text}"></span></p>
 </div>
 <script th:src="@{/js/photo.js}"></script>
 </body>

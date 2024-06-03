@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Info</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user_info.css}">
 </head>
 <body>
-<h2>Подробная информация о пользователе:</h2>
-<div th:if="${userDetails}">
-    <p>Имя: <span th:text="${userDetails.username}"></span></p>
-    <p>Фамилия: <span th:text="${userDetails.surname}"></span></p>
-    <p>Возраст: <span th:text="${userDetails.age}"></span></p>
-    <p>Город: <span th:text="${userDetails.city}"></span></p>
-    <p>Интересы: <span th:text="${userDetails.interesting}"></span></p>
+<header>
+    <nav class="navigation">
+        <a th:href="@{/user/all}">Назад</a>
+    </nav>
+</header>
+<div class="info-box">
+    <h2>Подробная информация о пользователе:</h2>
+    <div th:if="${userDetails}">
+        <p>Имя: <span th:text="${userDetails.username}"></span></p>
+        <p>Фамилия: <span th:text="${userDetails.surname}"></span></p>
+        <p>Возраст: <span th:text="${userDetails.age}"></span></p>
+        <p>Город: <span th:text="${userDetails.city}"></span></p>
+        <p>Интересы: <span th:text="${userDetails.interesting}"></span></p>
+    </div>
 </div>
 </body>
 </html>

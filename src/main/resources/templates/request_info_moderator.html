@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>request_info_moderator</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/request_details_admin.css}">
 </head>
 <body>
 <header>
@@ -10,11 +11,13 @@
         <a th:href="@{/requests/all_moderator}">Back</a>
     </nav>
 </header>
-<h1>Данные о заявке</h1>
-<p>Имя заявки: <span th:text="${request.model_name}"></span></p>
-<p>Дата создания: <span th:text="${request.data}"></span></p>
-<img src="" id="photoPreview">
-<p>Текст о проблеме : <span th:text="${request.text}"></span></p>
+<div class="info-box">
+    <h2>Данные о заявке</h2>
+    <p>Имя заявки: <span th:text="${request.model_name}"></span></p>
+    <p>Дата создания: <span th:text="${request.data}"></span></p>
+    <img src="" id="photoPreview">
+    <p>Текст о проблеме : <span th:text="${request.text}"></span></p>
+</div>
 </body>
 <script>
     const photo = localStorage.getItem('photo');

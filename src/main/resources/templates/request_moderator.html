@@ -3,27 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>request_moderator</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/moderator_responses.css}">
 </head>
 <body>
 <header>
     <nav class="navigation">
-        <a th:href="@{/profile}">Back</a>
+        <a th:href="@{/profile}">Назад</a>
     </nav>
 </header>
-<h1>Все заявки</h1>
-<table border="1">
-    <tr>
-        <th>Имя заявки</th>
-        <th>Подробнее</th>
-        <th>Пользователь</th>
-        <th>Убрать заявку</th>
-    </tr>
-    <tr th:each="request : ${requests}">
-        <td th:text="${request.model_name}"></td>
-        <td><a th:href="@{/requests/moderator/details/{id}(id=${request.id})}">Подробнее о заявке</a></td>
-        <td th:text="${request.login}"></td>
-        <td><a th:href="@{'/requests/delete/' + ${request.id}}">Удалить заявку</a></td>
-    </tr>
-</table>
+<div class="info-box">
+    <h2>Все заявки</h2>
+    <div class="responses">
+        <table>
+            <tr>
+                <th>Имя заявки</th>
+                <th>Подробнее</th>
+                <th>Пользователь</th>
+                <th>Убрать заявку</th>
+            </tr>
+            <tr th:each="request : ${requests}">
+                <td th:text="${request.model_name}"></td>
+                <td><a th:href="@{/requests/moderator/details/{id}(id=${request.id})}">Подробнее о заявке</a></td>
+                <td th:text="${request.login}"></td>
+                <td><a th:href="@{'/requests/delete/' + ${request.id}}">Удалить заявку</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
 </body>
 </html>

@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/create_response.css}">
 </head>
 <body>
+<header>
+    <nav class="navigation">
+        <a th:href="@{/requests/all}">Назад</a>
+    </nav>
+</header>
 <div class="create-box">
     <form action="/requests/create-response" method="post" th:object="${response}">
         <input type="hidden" name="requestId" th:value="${requestId}">
         <div class="input-box">
             <input type="text" id="text" name="text" th:field="*{response_text}" required><br><br>
-            <label for="text">Text:</label><br>
+            <label for="text">Введите текст для ответа клиенту:</label><br>
         </div>
-        <button type="submit">Create Request</button>
+        <button type="submit">Создать ответ для заявки</button>
     </form>
 </div>
 </body>

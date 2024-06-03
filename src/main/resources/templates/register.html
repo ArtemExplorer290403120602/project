@@ -9,40 +9,40 @@
 <section>
     <div class="register-box">
         <form action="/register" method="post" th:object="${userDto}">
-            <h2>Register</h2>
+            <h2>Регистрация</h2>
             <div class="input-box">
                 <input type="text" id="login" name="login" th:field="*{login}" required>
-                <label for="login">Login:</label>
+                <label for="login">Логин:</label>
             </div>
             <div class="input-box">
                 <input type="password" id="password" name="password" th:field="*{password}" required>
-                <label for="password">Password:</label>
+                <label for="password">Пароль:</label>
             </div>
             <div class="input-box">
                 <input type="text" id="username" name="username" th:field="*{username}" required>
-                <label for="username">Username:</label>
+                <label for="username">Имя:</label>
             </div>
             <div class="input-box">
                 <input type="text" id="surname" name="surname" th:field="*{surname}" required>
-                <label for="surname">Surname:</label>
+                <label for="surname">Фамилия:</label>
             </div>
             <div class="input-box">
                 <input type="text" id="age" name="age" th:field="*{age}" required>
-                <label for="age">Age:</label>
+                <label for="age">Возраст:</label>
             </div>
             <div class="input-box">
                 <input type="text" id="city" name="city" th:field="*{city}" required>
-                <label for="city">City:</label>
+                <label for="city">Город:</label>
             </div>
             <div class="input-box">
                 <input type="text" id="interesting" name="interesting" th:field="*{interesting}" required>
-                <label for="interesting">Interesting:</label>
+                <label for="interesting">Интересы:</label>
             </div>
             <div class="input-box">
                 <input type="email" id="email" name="email" th:field="*{email}" required>
-                <label for="email">Email:</label>
+                <label for="email">Почта:</label>
             </div>
-            <button type="submit">Register</button>
+            <button type="submit">Зарегестрироваться</button>
         </form>
     </div>
 </section>
