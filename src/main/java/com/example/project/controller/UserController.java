@@ -1,59 +1,50 @@
 package com.example.project.controller;
 
-import com.example.project.model.User;
-import com.example.project.repository.UserRepository;
+import com.example.project.security.model.UserSecurity;
+import com.example.project.security.model.dto.UserDto;
+import com.example.project.security.service.UserSecurityService;
 import com.example.project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Controller
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-
+    private final UserSecurityService userSecurityService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserSecurityService userSecurityService) {
         this.userService = userService;
+        this.userSecurityService = userSecurityService;
     }
 
-    @GetMapping()
-    public String getAllUser(ModelMap modelMap) {
-        List<User> users = userService.getAllUsers();
-        modelMap.addAttribute("users", users);
-        return users.isEmpty() ? "error" : "main";
+    @GetMapping("/all")
+    public String getAllResponses(Model model) {
+        List<UserSecurity> userSecur =userService.allUser();
+        model.addAttribute("users", userSecur);
+        return "user_page";
     }
 
-    @GetMapping("/id")
-    public String getUserById(@RequestParam("id") Long id, ModelMap modelMap) {
-        Optional<User> user = userService.getUserById(id);
-        if (user.isPresent()) {
-            modelMap.addAttribute("user", user.get());
-            return "get_user";
-        }
-        return "error";
+    @GetMapping("/details/{login}")
+    public String getUserDetails(@PathVariable String login, Model model) {
+        UserDto userDto = userSecurityService.getUserByLogin(login);
+        model.addAttribute("userDetails", userDto);
+        return "user_info";
     }
 
-    @GetMapping("/delete/id")
-    public String deleteUserById(@RequestParam("id") Long id,ModelMap modelMap){
-        Optional<User> user = userService.getUserById(id);
-        if (user.isPresent()) {
-            userService.deleteUserById(id);
-            log.info("User delete by id: " + id);
-            modelMap.addAttribute("deletedUser", user.get());
-            return "get_deleted_user";
-        }
-        return "error";
+    @PostMapping("/remove/{login}")
+    public String removeUser(@PathVariable String login) {
+        userSecurityService.removeUserByLogin(login);
+        return "redirect:/user/all";
     }
 }

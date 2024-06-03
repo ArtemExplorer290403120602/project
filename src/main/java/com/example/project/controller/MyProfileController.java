@@ -35,8 +35,10 @@ public class MyProfileController {
             return "profile";
         } else if (role == Roles.ADMIN) {
             return "admin_profile";
+        } else if (role == Roles.MODERATION) {
+            return "moderator_profile";
         } else {
-            return "error";
+            return "error-page";
         }
     }
 }

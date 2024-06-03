@@ -45,4 +45,17 @@ public class ResponseController {
         model.addAttribute("responses", responses);
         return "user_response";
     }
+
+    @GetMapping("/responses/all_moderator")
+    public String getAllResponsesModerator(Model model) {
+        List<Response> responses = responseService.allResponses();
+        model.addAttribute("responses", responses);
+        return "user_response_moderation";
+    }
+
+    @GetMapping("/responses/delete/{responseId}")
+    public String deleteResponse(@PathVariable Long responseId) {
+        responseService.deleteResponse(responseId);
+        return "redirect:/responses/all_moderator";
+    }
 }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>request_info_moderator</title>
+</head>
+<body>
+<header>
+    <nav class="navigation">
+        <a th:href="@{/requests/all_moderator}">Back</a>
+    </nav>
+</header>
+<h1>Данные о заявке</h1>
+<p>Имя заявки: <span th:text="${request.model_name}"></span></p>
+<p>Дата создания: <span th:text="${request.data}"></span></p>
+<img src="" id="photoPreview">
+<p>Текст о проблеме : <span th:text="${request.text}"></span></p>
+</body>
+<script>
+    const photo = localStorage.getItem('photo');
+    document.getElementById('photoPreview').src = photo;
+</script>
+</body>
+</html>

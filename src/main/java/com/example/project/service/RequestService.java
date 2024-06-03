@@ -70,4 +70,9 @@ public class RequestService {
     public List<Request> allRequest() {
         return requestRepository.allRequest();
     }
+
+    public void deleteRequestById(Long id) {
+        requestRepository.deleteById(id);
+    }
+
 }

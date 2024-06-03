@@ -46,7 +46,7 @@ public class UserSecurityService {
         userSecurity.setLogin(userDto.getLogin());
         userSecurity.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userSecurity.setEmail(userDto.getEmail());
-        userSecurity.setRole(Roles.USER);
+        userSecurity.setRole(Roles.MODERATION);
         userSecurity.setUser_id(savedUser.getId());
         userSecurityRepository.save(userSecurity);
     }
@@ -74,5 +74,14 @@ public class UserSecurityService {
         UserSecurity userSecurity = userSecurityRepository.findByLogin(login)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         return userSecurity.getRole();
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void removeUserByLogin(String login) {
+        UserSecurity userSecurity = userSecurityRepository.findByLogin(login)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        userSecurityRepository.delete(userSecurity);
+        // Дополнительные операции удаления в зависимости от логики вашего приложения
     }
 }

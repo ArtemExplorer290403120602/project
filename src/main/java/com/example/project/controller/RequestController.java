@@ -69,4 +69,23 @@ public class RequestController {
         return "request_details_admin";
     }
 
+    @GetMapping("/all_moderator")
+    public String showAllRequestsModerator(Model model) {
+        List<Request> requests = requestService.allRequest(); // Изменение вызова метода
+        model.addAttribute("requests", requests);
+        return "request_moderator";
+    }
+
+    @GetMapping("/moderator/details/{id}")
+    public String showRequestDetailModerator(@PathVariable("id") Long id, Model model) {
+        Request request = requestService.getRequestById(id);
+        model.addAttribute("request", request);
+        return "request_info_moderator";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteRequest(@PathVariable("id") Long id) {
+        requestService.deleteRequestById(id);
+        return "redirect:/requests/all_moderator";
+    }
 }

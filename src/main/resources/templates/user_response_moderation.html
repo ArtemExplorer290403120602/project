@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user_response_moderation</title>
+</head>
+<body>
+<header>
+    <nav class="navigation">
+        <a th:href="@{/profile}">Вернуться назад</a>
+    </nav>
+</header>
+<h2>Все заявки админов:</h2>
+<div class="responses">
+    <table>
+        <tr>
+            <th>Имя Админа</th>
+            <th>Его ответ</th>
+            <th>Дата создания</th>
+            <th>Удалить ответ</th>
+        </tr>
+        <tr th:each="response : ${responses}">
+            <td th:text="${response.login}"></td>
+            <td th:text="${response.response_text}"></td>
+            <td th:text="${response.response_date}"></td>
+            <td><a th:href="@{/responses/delete/{responseId}(responseId=${response.id})}">Удалить ответ</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

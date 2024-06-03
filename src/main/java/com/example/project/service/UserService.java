@@ -1,5 +1,6 @@
 package com.example.project.service;
 
+import com.example.project.model.Response;
 import com.example.project.model.User;
 import com.example.project.repository.UserRepository;
 import com.example.project.security.model.UserSecurity;
@@ -15,27 +16,15 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final UserSecurityRepository userSecurityRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository,UserSecurityRepository userSecurityRepository) {
         this.userRepository = userRepository;
+        this.userSecurityRepository=userSecurityRepository;
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.getAllUser();
-    }
-
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
-    }
-
-    public void deleteUserById(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            userRepository.deleteById(id);
-            log.info("User delete by id: " + id);
-        } else {
-            log.error("User with ID {} not found, cannot delete", id);
-        }
+    public List<UserSecurity> allUser() {
+        return userSecurityRepository.allUser();
     }
 }

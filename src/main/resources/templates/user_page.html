@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Page</title>
+</head>
+<body>
+<header>
+    <nav class="navigation">
+        <a th:href="@{/profile}">Назад</a>
+    </nav>
+</header>
+<h2>Пользователи:</h2>
+<div class="user">
+    <table>
+        <tr>
+
+            <th>Логин</th>
+            <th>Почта</th>
+            <th>Роль</th>
+            <th>Подробнее</th>
+            <th>Убрать пользователя</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.login}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.role}"></td>
+            <td ><a th:href="@{/user/details/{login}(login=${user.login})}">Подробнее об пользователе</a></td>
+            <td>
+                <form th:action="@{/user/remove/{login}(login=${user.login})}" method="post">
+                    <button type="submit">Убрать пользователя</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

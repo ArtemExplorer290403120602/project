@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>moderator_profile</title>
+</head>
+<body>
+<header>
+    <nav class="navigation">
+        <a th:href="@{/}">Вернуться на главную страницу</a>
+        <a th:href="@{/user/all}">Посмотреть всех пользователей</a>
+        <a th:href="@{/responses/all_moderator}">Посмотреть все ответы администратора </a>
+        <a th:href="@{/requests/all_moderator}">Посмотреть все заявки</a>
+    </nav>
+</header>
+<div class="info-box">
+    <h2 th:text="${userDto.username} + ' ' + ${userDto.surname}"></h2>
+    <div class="input-box">
+        <p>Age: <span th:text="${userDto.age}"></span></p>
+    </div>
+    <div class="input-box">
+        <p>City: <span th:text="${userDto.city}"></span></p>
+    </div>
+    <div class="input-box">
+        <p>Interesting: <span th:text="${userDto.interesting}"></span></p>
+    </div>
+    <div class="input-box">
+        <p>Email: <span th:text="${userDto.email}"></span></p>
+    </div>
+</div>
+</body>
+</html>

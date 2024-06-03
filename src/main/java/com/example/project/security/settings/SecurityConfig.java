@@ -33,8 +33,6 @@ public class SecurityConfig {
                         auth.requestMatchers(
                                         new AntPathRequestMatcher("/", "GET"),
                                         new AntPathRequestMatcher("/developer", "GET"),
-                                        new AntPathRequestMatcher("/id", "GET"),
-                                        new AntPathRequestMatcher("/delete/id", "GET"),
                                         new AntPathRequestMatcher("/register", "POST"),
                                         new AntPathRequestMatcher("/register", "GET"),
                                         new AntPathRequestMatcher("/css/**"),
@@ -47,14 +45,24 @@ public class SecurityConfig {
                                         new AntPathRequestMatcher("/create", "POST"),
                                         new AntPathRequestMatcher("/completed-requests", "GET"),
                                         new AntPathRequestMatcher("/completed-requests/{id}", "GET")
-                                        ).hasRole("USER")
+                                ).hasRole("USER")
                                 .requestMatchers(
                                         new AntPathRequestMatcher("/requests/create-response", "GET"),
                                         new AntPathRequestMatcher("/requests/create-response", "POST")
                                 ).hasRole("ADMIN")
                                 .requestMatchers(
                                         new AntPathRequestMatcher("/responses/all", "GET")
-                                ).hasAnyRole("USER","ADMIN")
+                                ).hasAnyRole("USER", "ADMIN", "MODERATION")
+                                .requestMatchers(
+                                        new AntPathRequestMatcher("/user/all", "GET"),
+                                        new AntPathRequestMatcher("/user/remove/{login}", "GET"),
+                                        new AntPathRequestMatcher("/user/details/{login}", "POST"),
+                                        new AntPathRequestMatcher("/responses/all_moderator", "GET"),
+                                        new AntPathRequestMatcher("/responses/delete/{responseId}", "GET"),
+                                        new AntPathRequestMatcher("/requests/all_moderator", "GET"),
+                                        new AntPathRequestMatcher("/requests/moderator/details/{id}", "GET"),
+                                        new AntPathRequestMatcher("/requests/delete/{id}")
+                                ).hasRole("MODERATION")
                                 .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login-user").permitAll()

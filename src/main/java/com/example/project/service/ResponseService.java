@@ -52,4 +52,8 @@ public class ResponseService {
     public List<Response> allResponses() {
         return responseRepository.allResponses();
     }
+
+    public void deleteResponse(Long responseId) {
+        responseRepository.deleteById(responseId);
+    }
 }
