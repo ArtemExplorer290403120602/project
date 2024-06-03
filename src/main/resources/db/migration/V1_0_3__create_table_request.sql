@@ -4,7 +4,6 @@ create table requests
         constraint requests_pk
             primary key,
     model_name       varchar(50)  not null,
-    photo            bytea        not null,
     data             timestamp    not null,
     user_security_id bigserial    not null
         constraint requests_usr_security_id_fk

@@ -21,6 +21,7 @@
         <td th:text="${request.model_name}"></td>
         <td><a th:href="@{/requests/details/{id}(id=${request.id})}">View Details</a></td>
         <td th:text="${request.login}"></td>
+        <td><a th:href="@{/requests/create-response(requestId=${request.id})}">Ответ на заявку</a></td>
     </tr>
 </table>
 </body>

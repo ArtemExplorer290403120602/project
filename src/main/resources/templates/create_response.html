@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="create-box">
+    <form action="/requests/create-response" method="post" th:object="${response}">
+        <input type="hidden" name="requestId" th:value="${requestId}">
+        <div class="input-box">
+            <input type="text" id="text" name="text" th:field="*{response_text}" required><br><br>
+            <label for="text">Text:</label><br>
+        </div>
+        <button type="submit">Create Request</button>
+    </form>
+</div>
+</body>
+</html>
