@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Request Details</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/request_details.css}">
 </head>
 <body>
-<h1>Request Details</h1>
-<p>Model Name: <span th:text="${request.model_name}"></span></p>
-<p>Photo: </p>
-<img src="" id="photoPreview">
-<p>Text is problem: <span th:text="${request.text}"></span></p>
+<header>
+    <nav class="navigation">
+        <a th:href="@{/completed-requests}">Back</a>
+    </nav>
+</header>
+<div class="info-box">
+    <h2>Request Details</h2>
+    <p>Model Name: <span th:text="${request.model_name}"></span></p>
+    <p>Photo: </p>
+    <img src="" id="photoPreview">
+    <p>Text is problem: <span th:text="${request.text}"></span></p>
+</div>
 <script th:src="@{/js/photo.js}"></script>
 </body>
 </html>
