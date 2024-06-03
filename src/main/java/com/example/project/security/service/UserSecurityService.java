@@ -69,4 +69,10 @@ public class UserSecurityService {
 
         return userDto;
     }
+
+    public Roles getRoleByLogin(String login) {
+        UserSecurity userSecurity = userSecurityRepository.findByLogin(login)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return userSecurity.getRole();
+    }
 }

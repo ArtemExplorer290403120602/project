@@ -12,4 +12,7 @@ import java.util.List;
 public interface RequestRepository extends JpaRepository<Request,Long> {
     @Query(nativeQuery = true, value = "SELECT * FROM requests WHERE user_security_id = :userSecurityId")
     List<Request> findByUser_security_id(Long userSecurityId);
+
+    @Query(nativeQuery = true,value = "SELECT * FROM requests;")
+    List<Request> allRequest();
 }

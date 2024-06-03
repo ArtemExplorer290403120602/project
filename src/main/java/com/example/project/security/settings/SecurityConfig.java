@@ -48,6 +48,10 @@ public class SecurityConfig {
                                         new AntPathRequestMatcher("/completed-requests", "GET"),
                                         new AntPathRequestMatcher("/completed-requests/{id}", "GET")
                                 ).hasRole("USER")
+                                .requestMatchers(
+                                        new AntPathRequestMatcher("/requests/all","GET"),
+                                        new AntPathRequestMatcher("/requests/details/{id}")
+                                ).hasRole("ADMIN")
                                 .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login-user").permitAll()

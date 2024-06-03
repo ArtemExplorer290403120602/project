@@ -40,4 +40,5 @@ public class Request {
     @Column(name = "user_security_id")
     private Long user_security_id;
 
+
 }

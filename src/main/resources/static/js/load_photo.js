@@ -9,3 +9,4 @@ function previewPhoto(event) {
     }
     reader.readAsDataURL(file);
 }
+

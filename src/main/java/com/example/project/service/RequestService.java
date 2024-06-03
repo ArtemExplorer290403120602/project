@@ -66,4 +66,8 @@ public class RequestService {
             return new Request();
         }
     }
+
+    public List<Request> allRequest() {
+        return requestRepository.allRequest();
+    }
 }

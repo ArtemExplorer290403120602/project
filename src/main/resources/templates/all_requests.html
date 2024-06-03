@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All requests</title>
+</head>
+<body>
+<header>
+    <nav class="navigation">
+        <a th:href="@{/profile}">Back</a>
+    </nav>
+</header>
+<h1>All Requests</h1>
+<table border="1">
+    <tr>
+        <th>Model Name</th>
+        <th>Details</th>
+        <th>User</th>
+    </tr>
+    <tr th:each="request : ${requests}">
+        <td th:text="${request.model_name}"></td>
+        <td><a th:href="@{/requests/details/{id}(id=${request.id})}">View Details</a></td>
+        <td th:text="${request.login}"></td>
+    </tr>
+</table>
+</body>
+</html>
