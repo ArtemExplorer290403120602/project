@@ -69,7 +69,10 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/", true))
                 .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/").permitAll())
+                        .logoutSuccessUrl("/").permitAll()
+                        .invalidateHttpSession(true) // инвалидация текущей сессии
+                        .deleteCookies("JSESSIONID", "cookieName1", "cookieName2") // удаление куки-файлов
+                )
                 //.failureUrl("/login-user.html?error=true")) //целевая страница после неудачного входа в систему
                 .userDetailsService(userDetailSecurityService)
                 .httpBasic(Customizer.withDefaults())
