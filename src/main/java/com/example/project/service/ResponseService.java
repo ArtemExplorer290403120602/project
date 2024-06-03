@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,5 +47,9 @@ public class ResponseService {
         response.setModel_name(request.getModel_name());
 
         responseRepository.save(response);
+    }
+
+    public List<Response> allResponses() {
+        return responseRepository.allResponses();
     }
 }

@@ -47,11 +47,14 @@ public class SecurityConfig {
                                         new AntPathRequestMatcher("/create", "POST"),
                                         new AntPathRequestMatcher("/completed-requests", "GET"),
                                         new AntPathRequestMatcher("/completed-requests/{id}", "GET")
-                                ).hasRole("USER")
+                                        ).hasRole("USER")
                                 .requestMatchers(
-                                        new AntPathRequestMatcher("/requests/create-response","GET"),
-                                        new AntPathRequestMatcher("/requests/create-response","POST")
+                                        new AntPathRequestMatcher("/requests/create-response", "GET"),
+                                        new AntPathRequestMatcher("/requests/create-response", "POST")
                                 ).hasRole("ADMIN")
+                                .requestMatchers(
+                                        new AntPathRequestMatcher("/responses/all", "GET")
+                                ).hasAnyRole("USER","ADMIN")
                                 .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login-user").permitAll()

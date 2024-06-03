@@ -15,6 +15,7 @@
         <a th:href="@{/profile}" th:if="${showProfileLink}">My profile</a>
         <span th:if="${showProfileLink}" class="logged-in">Logged in as: <span th:text="${username}"></span></span>
         <a th:if="${showProfileLink}" th:href="@{/logout}">Logout</a>
+        <a th:if="${showProfileLink }" th:href="@{/responses/all}">Ответы от Админов</a>
     </nav>
 </header>
 </body>
