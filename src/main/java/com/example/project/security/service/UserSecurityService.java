@@ -46,7 +46,7 @@ public class UserSecurityService {
         userSecurity.setLogin(userDto.getLogin());
         userSecurity.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userSecurity.setEmail(userDto.getEmail());
-        userSecurity.setRole(Roles.MODERATION);
+        userSecurity.setRole(Roles.USER);
         userSecurity.setUser_id(savedUser.getId());
         userSecurityRepository.save(userSecurity);
     }
